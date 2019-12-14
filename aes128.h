@@ -59,9 +59,6 @@ static const uint8_t SBoxInv[256] = {
     0xa0, 0xe0, 0x3b, 0x4d, 0xae, 0x2a, 0xf5, 0xb0, 0xc8, 0xeb, 0xbb, 0x3c, 0x83, 0x53, 0x99, 0x61,
     0x17, 0x2b, 0x04, 0x7e, 0xba, 0x77, 0xd6, 0x26, 0xe1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0c, 0x7d};
 
-
-//round constant
-
 uint8_t* aes_poly_mult (uint8_t* p, uint8_t* q);
 
 static const uint32_t RCons[] = {0x01000000, 0x02000000, 0x04000000, 0x08000000, 0x10000000, 0x20000000, 0x40000000, 0x80000000, 0x1b000000, 0x36000000};
@@ -92,9 +89,5 @@ void MixColumns(uint8_t** state, uint8_t** coefficient);
 void KeyExpansion (uint8_t key[4* NumK], uint32_t* w);
 
 void Cipher(uint8_t** in, uint8_t** out, uint32_t* w, uint8_t** coefficient);
-
-//void aes128_encrypt(const uint8_t *roundkeys, const uint8_t *plaintext, uint8_t *ciphertext, bool isInv);
-
-//void aes128_decrypt(const uint8_t *roundkeys, const uint8_t *plaintext, uint8_t *ciphertext);
 
 #endif

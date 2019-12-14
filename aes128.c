@@ -27,7 +27,6 @@ uint8_t* aes_poly_mult (uint8_t* p, uint8_t* q) {
   for (int i = 0; i < 4; ++i) {
     for (int j =0; j < 4; ++j) {
       res[(i+j)%4] ^= aes_mult(p[i], q[j]);
-      //printf("%x ", res[k]);
     }
   }
   return res;
@@ -119,7 +118,6 @@ void AddRoundKey(uint8_t** state, uint32_t w) {
     }
 }
 
-//reference: https://en.wikipedia.org/wiki/Rijndael_MixColumns
 void MixColumns(uint8_t** state, uint8_t** coefficient) {
   uint8_t temp[4][4];
   for (int c = 0; c < 4; ++c) {
@@ -128,12 +126,6 @@ void MixColumns(uint8_t** state, uint8_t** coefficient) {
     }
     printf("\n");
   }
-  /*
-       2, 1, 1, 3,
-       3, 2, 1, 1,
-       1, 3, 2, 1,
-       1, 1, 3, 2
-  */
   for (int j=0; j < 4; ++j) {
     state[j][0] = (timesN(coefficient[0][0],temp[j][0]) ^ timesN(coefficient[1][0],temp[j][1]) ^ timesN(coefficient[2][0],temp[j][2]) ^ timesN(coefficient[3][0],temp[j][3]));
 //state[j][1] = (timesN(coefficient[0][1],temp[j][0]) ^ timesN(coefficient[1][1],temp[j][1]) ^ timesN(coefficient[2][1],temp[j][2]) ^ timesN(coefficient[3][1],temp[j][3]));
@@ -141,8 +133,6 @@ void MixColumns(uint8_t** state, uint8_t** coefficient) {
     //state[j][3] = (timesN(coefficient[0][3],temp[j][0]) ^ timesN(coefficient[1][3],temp[j][1]) ^ timesN(coefficient[2][3],temp[j][2]) ^ timesN(coefficient[3][3],temp[j][3]));
   }
 }
-
-
 
 void KeyExpansion ( uint8_t key[4* NumK], uint32_t* w) { //generate key schedule for 11 addRoundKey() function calls
   uint32_t temp;
