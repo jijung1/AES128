@@ -124,7 +124,6 @@ void MixColumns(uint8_t** state, uint8_t** coefficient) {
     for (int r = 0; r < 4; ++r) {
       temp[r][c] = state[r][c];
     }
-    printf("\n");
   }
   for (int j=0; j < 4; ++j) {
     state[j][0] = (timesN(coefficient[0][0],temp[j][0]) ^ timesN(coefficient[1][0],temp[j][1]) ^ timesN(coefficient[2][0],temp[j][2]) ^ timesN(coefficient[3][0],temp[j][3]));
