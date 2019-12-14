@@ -128,9 +128,9 @@ void MixColumns(uint8_t** state, uint8_t** coefficient) {
   }
   for (int j=0; j < 4; ++j) {
     state[j][0] = (timesN(coefficient[0][0],temp[j][0]) ^ timesN(coefficient[1][0],temp[j][1]) ^ timesN(coefficient[2][0],temp[j][2]) ^ timesN(coefficient[3][0],temp[j][3]));
-//state[j][1] = (timesN(coefficient[0][1],temp[j][0]) ^ timesN(coefficient[1][1],temp[j][1]) ^ timesN(coefficient[2][1],temp[j][2]) ^ timesN(coefficient[3][1],temp[j][3]));
-    //state[j][2] = (timesN(coefficient[0][2],temp[j][0]) ^ timesN(coefficient[1][2],temp[j][1]) ^ timesN(coefficient[2][2],temp[j][2]) ^ timesN(coefficient[3][2],temp[j][3]));
-    //state[j][3] = (timesN(coefficient[0][3],temp[j][0]) ^ timesN(coefficient[1][3],temp[j][1]) ^ timesN(coefficient[2][3],temp[j][2]) ^ timesN(coefficient[3][3],temp[j][3]));
+    state[j][1] = (timesN(coefficient[0][1],temp[j][0]) ^ timesN(coefficient[1][1],temp[j][1]) ^ timesN(coefficient[2][1],temp[j][2]) ^ timesN(coefficient[3][1],temp[j][3]));
+    state[j][2] = (timesN(coefficient[0][2],temp[j][0]) ^ timesN(coefficient[1][2],temp[j][1]) ^ timesN(coefficient[2][2],temp[j][2]) ^ timesN(coefficient[3][2],temp[j][3]));
+    state[j][3] = (timesN(coefficient[0][3],temp[j][0]) ^ timesN(coefficient[1][3],temp[j][1]) ^ timesN(coefficient[2][3],temp[j][2]) ^ timesN(coefficient[3][3],temp[j][3]));
   }
 }
 
@@ -184,7 +184,7 @@ void Cipher(uint8_t** in, uint8_t** out, uint32_t* w, uint8_t** coefficient) {
   for (int round = 1; round < NumR; ++round) {
     SubstBytes(state, false);
     shift_rows(state, 1);
-    MixColumns(state, coefficient);
+    //MixColumns(state, coefficient);
     AddRoundKey(state, w[round]);
   }
 
